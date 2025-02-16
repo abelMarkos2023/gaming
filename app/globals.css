@@ -1,0 +1,176 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* This won't work as expected */
+.box {
+  z-index: 10;
+}
+
+/* This will work because we've set a positioning context */
+.box {
+  position: relative;
+  z-index: 10;
+}
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+.background{
+  background: rgb(12,12,138);
+  background: linear-gradient(45deg, rgba(12,12,138,1) 0%, rgba(52,7,100,1) 18%, rgba(79,15,69,0.8743872549019608) 36%, rgba(145,38,74,1) 100%);
+}
+.clamp-button {
+  font-family: Arial, sans-serif;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  padding: clamp(0.5rem, 1vw, 1rem) clamp(1rem, 3vw, 2rem);
+  color: white;
+  background: linear-gradient(135deg, #4a90e2, #9013fe);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.clamp-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+.polygon-button {
+  position: relative;
+  font-family: Arial, sans-serif;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  padding: 0.8rem 2rem;
+  color: white;
+  background: linear-gradient(135deg, #ff7eb3, #ff758c);
+  border: none;
+  clip-path: polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.polygon-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(255, 117, 140, 0.3);
+}
+
+.animated-polygon-button {
+  font-family: Arial, sans-serif;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  padding: clamp(0.4rem, 0.4vw, .4rem) clamp(1.5rem, 3vw, 2rem);
+  color: white;
+  background: linear-gradient(135deg, #56ccf2, #2f80ed);
+  border: none;
+  clip-path: polygon(5% 0%, 95% 0%, 100% 50%, 95% 100%, 5% 100%, 0% 50%);
+  cursor: pointer;
+  transition: clip-path 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.animated-polygon-button:hover {
+  clip-path: polygon(15% 0%, 85% 0%, 100% 50%, 85% 100%, 15% 100%, 0% 50%);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(47, 128, 237, 0.3);
+}
+.glow-button {
+  font-family: Arial, sans-serif;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  padding: clamp(0.6rem, 1vw, 1rem) clamp(1.5rem, 3vw, 2rem);
+  color: white;
+  background: linear-gradient(135deg, #f7b42c, #fc575e);
+  border: none;
+  clip-path: polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%);
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  position: relative;
+}
+.glow-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  clip-path: inherit;
+  background: inherit;
+  filter: blur(15px);
+  z-index: -1;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+.glow-button:hover::after {
+  opacity: 1;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
