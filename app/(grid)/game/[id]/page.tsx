@@ -16,7 +16,7 @@ import WhishlistGameCard from '@/components/WhishlistGameCard'
 const Page = ({
     params,
   }: {
-    params: Promise<{ slug: string }>
+    params: Promise<{ id: string }>
   }) => {
 
 const [swiper, setSwiper] = useState<SwiperType | null>()

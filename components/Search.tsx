@@ -8,7 +8,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const Search = () => {
-  const outsideRef = useRef(null)
+  const outsideRef =  useRef<HTMLDivElement | null>(null)
 
   const [query,setQuery] = useState("");
   const [search,setSearch] = useState("")
@@ -21,9 +21,13 @@ const Search = () => {
 
     return () => clearTimeout(t);
   },[query])
+  // const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  //   // Handle the event
+  // };
+  
 
-  const handleClickOutside = (e) => {
-    if (outsideRef.current &&!outsideRef.current.contains(e.target)) {
+  const handleClickOutside = (e:any) => {
+    if (outsideRef.current && !outsideRef?.current?.contains(e.target)) {
       setQuery("");
       setSearch("")
     }

@@ -16,7 +16,7 @@ const GridContainer = ({cols,children}:{cols:number,children: React.ReactNode}) 
         12: 'grid grid-cols-12',
     }
   return (
-    <div className={`${gridClasses[cols]} w-[100vw]`}>{children}</div>
+    <div className={`grid grid-cols-${cols} w-[100vw]`}>{children}</div>
   )
 }
 

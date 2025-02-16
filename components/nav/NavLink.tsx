@@ -11,7 +11,7 @@ const NavLink = ({navLink}:{navLink: {id:number,label:string,link:string,icon: R
 
   return (
     <Link href={link} className={`flex w-full items-center transition duration-200 gap-2 p-2 rounded-md text-base  ${isActive ? 'text-rose-500 ': 'text-gray-50'} hover:bg-rose-500 hover:text-white`}>
-            {React.cloneElement(icon,{className: 'w-4 h-4 lg:w-6 lg:h-6'})}
+            {React.cloneElement(icon)}
             <span className="hidden md:inline-block">{label}</span>
     </Link>
   )

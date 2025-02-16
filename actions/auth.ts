@@ -3,8 +3,12 @@
 import User from "@/models/User";
 import connect from "./connet"
 import bcrypt from 'bcrypt'
-import jwt from 'jsonwebtoken'
+import jwt, { JwtPayload } from 'jsonwebtoken'
 import { cookies } from "next/headers";
+
+function isJwtPayload(decoded: string | JwtPayload): decoded is JwtPayload {
+    return typeof decoded !== 'string' && 'id' in decoded && 'iat' in decoded && 'exp' in decoded;
+}
 
 
 const generateToken = async(id:any) => {
@@ -16,14 +20,18 @@ const generateToken = async(id:any) => {
 export const protect = async() => {
     const cookieStore = await cookies();
     
-
     const token = cookieStore.get('token')?.value;
     if(!token) return {success:false,message:"Your'e Not Authorized To Perform This Action"};
 
-    let decoded;
+    let decoded : JwtPayload | string;
+
     try {
         decoded = await jwt.verify(token,process.env.JWT_SECRET!!);
         if (!decoded) return {success:false,message:"Your'e Not Authorized To Perform This Action"};
+        console.log('decoded',decoded)
+        if (!isJwtPayload(decoded)) {
+            return { success: false, message: "You're Not Authorized To Perform This Action" };
+        }
 
         return {decoded}
        

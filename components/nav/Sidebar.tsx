@@ -21,31 +21,31 @@ const Sidebar = () => {
           id: 1,
         label: 'Home',
         link: '/',
-        icon: <BiHome />
+        icon: <BiHome className='w-4 h-4 lg:w-6 lg:h-6' />
         },
         {
             id: 2,
             label: 'Categories',
             link: '/categories',
-            icon: <BiCategory />
+            icon: <BiCategory className='w-4 h-4 lg:w-6 lg:h-6'/>
         },
         {
             id  : 5,
             label: 'Games',
             link: '/games',
-            icon: <CgGames />
+            icon: <CgGames className='w-4 h-4 lg:w-6 lg:h-6'/>
         },
         {
             id: 3,
             label: 'Whishlist',
             link: '/whishlist',
-            icon: <BiHeart />
+            icon: <BiHeart className='w-4 h-4 lg:w-6 lg:h-6'/>
         },
         {
             id: 4,
             label: 'Friends',
             link: '/friends',
-            icon: <BsPeopleFill />
+            icon: <BsPeopleFill className='w-4 h-4 lg:w-6 lg:h-6'/>
         },
         
 ];
@@ -76,7 +76,7 @@ const handleLoggout = async() => {
                             id: 4,
                             label: 'Settings',
                             link: '/settings',
-                            icon: <Settings />
+                            icon: <Settings/>
                         }
                     }
                     />
